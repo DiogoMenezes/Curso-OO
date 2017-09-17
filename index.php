@@ -33,5 +33,12 @@
   echo "<br>";
   echo $produto2->cor;
   */
-$dados_tenis1 = array('nome'=>"tenis1",'estoque'=>1500,'cor'=>"rosa");
-  $tenis = new TenisAdidas($dados_tenis1);
+
+$produto = new Produto();
+
+$produto->setNome("Tenis Exemplo")
+        ->setDescricao("Essa e a descricao do produto")
+        ->setValor(10)
+        ->setEstoque(1000);
+
+echo $produto->getNome();
