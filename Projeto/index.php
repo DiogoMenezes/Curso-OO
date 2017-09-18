@@ -1,5 +1,6 @@
 <?php
-require 'Cliente.php';
+require 'ClientePF.php';
+require 'ClientePJ.php';
 require 'ListaClientes.php';
 session_start();
 ?>
@@ -52,6 +53,11 @@ session_start();
                               <th>CPF</th>
                               <th>Endereço</th>
                               <th>Telefone</th>
+                              <?php if ($cliente instanceof ClientePJ)
+                              {?>
+                                  <th>Razão Social</th>
+                        <?php } ?>
+                              <th>Tipo Cliente</th>
                           </tr>
                       </thead>
 
@@ -61,6 +67,16 @@ session_start();
                               <td><?= $cliente->getCpf(); ?></td>
                               <td><?= $cliente->getEndereco(); ?></td>
                               <td><?= $cliente->getTelefone(); ?></td>
+                              <?php if ($cliente instanceof ClientePJ)
+                              {?>
+                                <td><?= $cliente->getRazaoSocial(); ?></td>
+                        <?php } ?>
+                              <?php if ($cliente instanceof ClientePJ)
+                              {?>
+                                <td>Pessoa Jurídica</td>
+                        <?php }else if ($cliente instanceof ClientePF){?>
+                                <td>Pessoa Física</td>
+                        <?php } ?>
                       <br>
                       </tr>
                       </tbody>
