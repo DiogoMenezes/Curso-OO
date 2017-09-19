@@ -1,10 +1,12 @@
 <?php
-require 'ClienteInterface.php';
-require 'ClientePF.php';
-require 'ClientePJ.php';
-require 'ListaClientes.php';
-session_start();
+require 'BancoClientes.php';
+$banco = new BancoClientes();
 
+if(isset($_GET['order'])){
+    $clientes = $banco->getClientes($_GET['order']);
+}else{
+    $clientes = $banco->getClientes();
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,91 +16,43 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
       <div class="navbar-fixed">
         <nav>
           <div class="nav-wrapper">
-            <a href="#!" class="brand-logo center">Clientes</a>
+            <a href="#" class="brand-logo center">Clientes</a>
           </div>
         </nav>
       </div>
       <div class="container">
         <main>
           <div class="espacamento">
-            <a class="waves-effect waves-light btn" href="index.php?ordem=crescente">Ordem Crescente</a>
-            <a class="waves-effect waves-light btn right" href="index.php?ordem=decrescente">Ordem Decrescente</a>
+            <a class="waves-effect waves-light btn" href="?order=crescente">Ordem Crescente</a>
+            <a class="waves-effect waves-light btn right" href="?order=decrescente">Ordem Decrescente</a>
           </div>
-          <?
-          if(is_null($_SESSION['$clientes'])){
-            $_SESSION['$clientes'] = $clientes;
-            usort($_SESSION['$clientes'], "crescente");
-         }
-         if ($_GET['ordem'] == "crescente" ) {
-               $_SESSION['$clientes'] = $clientes;
-               usort($_SESSION['$clientes'], "crescente");
-             ?>
-             <?php
-         } else if ($_GET['ordem'] == "decrescente") {
-               $_SESSION['$clientes'] = $clientes;
-               usort($_SESSION['$clientes'], "decrescente");
-         }
-         foreach ($_SESSION['$clientes'] as $cliente) {
-
-              if ($_GET['ref'] == $cliente->getId()) {
-                  ?>
                   <table>
                       <thead>
                           <tr>
-                              <th>Nome</th>
-                              <th>CPF</th>
-                              <th>Endereço</th>
-                              <th>Telefone</th>
-                              <?php if ($cliente instanceof ClientePJ)
-                              {?>
-                                  <th>Razão Social</th>
-                        <?php } ?>
-                              <th>Tipo Cliente</th>
-                              <th>Classificacao Cliente</th>
-                              <th>Endereco Cobranca</th>
+
+                              <td>Nome</td>
+
+
                           </tr>
                       </thead>
-
-                      <tbody>
+                      <?php foreach($clientes as $cliente){ ?>
                           <tr>
-                              <td><?= $cliente->getNome(); ?></td>
-                              <td><?= $cliente->getCpf(); ?></td>
-                              <td><?= $cliente->getEndereco(); ?></td>
-                              <td><?= $cliente->getTelefone(); ?></td>
-                              <?php if ($cliente instanceof ClientePJ)
-                              {?>
-                                <td><?= $cliente->getRazaoSocial(); ?></td>
-                        <?php } ?>
-                              <?php if ($cliente instanceof ClientePJ)
-                              {?>
-                                <td>Pessoa Jurídica</td>
-                        <?php }else if ($cliente instanceof ClientePF){?>
-                                <td>Pessoa Física</td>
-                        <?php } ?>
-                              <td><?= $cliente->getClassificacaoCliente(); ?></td>
-                              <td><?= $cliente->getEnderecoCobranca(); ?></td>
-                      <br>
-                      </tr>
-                      </tbody>
+                              <td><?php echo $cliente->getId() ; ?></td>
+                              <td><?php echo $cliente->getNome() ; ?></td>
+
+                              <td><?php echo ($cliente->isPessoaFisica()) ? "Pessoa Física" : "Pessoa Juridica"; ?></td>
+                              <td><a href="<?php echo 'clientes.php?id='.$cliente->getId() ?>" class="waves-effect waves-light btn" title="Visualizar">Visualizar</a></td>
+                          </tr>
+
+                      <?php } ?>
                   </table>
-      <?php } else { ?>
-                  <form method='get'>
-                      <input type="hidden" name="ref" value="<?= $cliente->getId(); ?>">
-                      <ul class="collection">
-                          <li class="collection-item"><?= $cliente->getNome(); ?><button class="secondary-content" type="submit" name="enviar"><i class="material-icons">send</i></button></li>
-                      </ul>
-                  </form>
-      <?php
-            }
-        }
-        ?>
         </main>
       </div>
     </body>

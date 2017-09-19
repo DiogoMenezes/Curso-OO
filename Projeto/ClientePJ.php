@@ -1,15 +1,11 @@
 <?php
+require_once("Cliente.php");
 
-  class ClientePJ extends ClientePF implements ClientePJInterface
+class ClientePJ extends Cliente
+{
+  public function __construct($id, $nome, $cpf, $endereco)
   {
-    public $razao_social;
-
-    public function getRazaoSocial()
-    {
-        return $this->razao_social;
-    }
-    public function setRazaoSocial($razao_social)
-    {
-      $this->razao_social = $razao_social;
-    }
+      parent::__construct($id, $nome, $cpf, $endereco);
+      $this->tipo = 2;
   }
+}

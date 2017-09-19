@@ -1,5 +1,6 @@
 <?php
 
+/*
   interface ClientePFInterface
   {
       public function getId();
@@ -13,13 +14,11 @@
 {
       public function getRazaoSocial();
 }
-
-  interface ImportanciaClienteInterface
+*/
+  interface ClienteInterface
   {
-      public function getClassificacaoCliente();
-  }
-
-  interface EnderecoCobranca
-  {
+      public function getGrauImportancia();
+      public function setGrauImportancia($grau);
       public function getEnderecoCobranca();
+      public function setEnderecoCobranca($endereco);
   }
