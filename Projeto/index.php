@@ -1,8 +1,10 @@
 <?php
+require 'ClienteInterface.php';
 require 'ClientePF.php';
 require 'ClientePJ.php';
 require 'ListaClientes.php';
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -31,18 +33,19 @@ session_start();
           </div>
           <?
           if(is_null($_SESSION['$clientes'])){
-              $_SESSION['$clientes'] = $clientes;
-          }
-          if ($_GET['ordem'] == "crescente" ) {
-                $_SESSION['$clientes'] = $clientes;
-                sort($_SESSION['$clientes']);
-              ?>
-              <?php
-          } else if ($_GET['ordem'] == "decrescente") {
-                $_SESSION['$clientes'] = $clientes;
-                rsort($_SESSION['$clientes']);
-          }
-          foreach ($_SESSION['$clientes'] as $cliente) {
+            $_SESSION['$clientes'] = $clientes;
+            usort($_SESSION['$clientes'], "crescente");
+         }
+         if ($_GET['ordem'] == "crescente" ) {
+               $_SESSION['$clientes'] = $clientes;
+               usort($_SESSION['$clientes'], "crescente");
+             ?>
+             <?php
+         } else if ($_GET['ordem'] == "decrescente") {
+               $_SESSION['$clientes'] = $clientes;
+               usort($_SESSION['$clientes'], "decrescente");
+         }
+         foreach ($_SESSION['$clientes'] as $cliente) {
 
               if ($_GET['ref'] == $cliente->getId()) {
                   ?>
@@ -58,6 +61,8 @@ session_start();
                                   <th>Razão Social</th>
                         <?php } ?>
                               <th>Tipo Cliente</th>
+                              <th>Classificacao Cliente</th>
+                              <th>Endereco Cobranca</th>
                           </tr>
                       </thead>
 
@@ -77,6 +82,8 @@ session_start();
                         <?php }else if ($cliente instanceof ClientePF){?>
                                 <td>Pessoa Física</td>
                         <?php } ?>
+                              <td><?= $cliente->getClassificacaoCliente(); ?></td>
+                              <td><?= $cliente->getEnderecoCobranca(); ?></td>
                       <br>
                       </tr>
                       </tbody>

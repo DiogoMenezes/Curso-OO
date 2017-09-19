@@ -1,13 +1,13 @@
 <?php
-require 'ClienteInterface.php';
-
-class ClientePF implements ClienteInterface
+class ClientePF implements ClientePFInterface,ImportanciaClienteInterface,EnderecoCobranca
   {
       public $nome;
       public $cpf;
       public $endereco;
       public $telefone;
       public $id;
+      public $classificacao_cliente;
+      public $endereco_cobranca;
 
       public function __construct(array $info)
       {
@@ -17,6 +17,8 @@ class ClientePF implements ClienteInterface
         $this->telefone = $info['telefone'];
         $this->id = $info['id'];
         $this->razao_social = $info['razao_social'];
+        $this->classificacao_cliente = $info['classificacao_cliente'];
+        $this->endereco_cobranca = $info['endereco_cobranca'];
       }
 
       public function getNome()
@@ -38,8 +40,20 @@ class ClientePF implements ClienteInterface
       {
           return $this->telefone;
       }
+
       public function getId()
       {
           return $this->id;
       }
+
+      public function getClassificacaoCliente()
+      {
+          return $this->classificacao_cliente;
+      }
+
+      public function getEnderecoCobranca()
+      {
+        return $this->endereco_cobranca;
+      }
+
   }
