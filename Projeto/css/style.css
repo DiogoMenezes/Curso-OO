@@ -1,5 +1,5 @@
 .container{
-  max-width: 720px;
+  max-width: 700px;
   margin-top: 75px;
 }
 .material-icons{
@@ -16,3 +16,8 @@ nav{
 .espacamento{
   margin-bottom: 30px;
 }
+
+td,th {
+  text-align: center;
+}
+
