@@ -37,7 +37,10 @@ if(isset($_GET['order'])){
                       <thead>
                           <tr>
 
+                              <td>ID</td>
                               <td>Nome</td>
+                              <td>Tipo Cliente</td>
+                              <td></td>
 
 
                           </tr>
