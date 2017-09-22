@@ -1,9 +1,12 @@
 <?php
-require 'ProcessoTrait.php';
+namespace SON\Conta;
+
+use SON\Conta\Util\ProcessoTrait;
 
 abstract class ContaAbstract
 {
     use ProcessoTrait;
+
     protected $saldo;
 
     public final function depositar($valor)

@@ -1,7 +1,10 @@
 <?php
-require 'ContaAbstract.php';
 
-class ContaPremium extends ContaAbstract
+namespace SON\Conta\Types;
+
+use \SON\Conta\ContaAbstract;
+
+class ContaPremiumType extends ContaAbstract
 {
   public function __construct()
   {

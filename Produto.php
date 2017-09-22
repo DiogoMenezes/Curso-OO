@@ -1,5 +1,6 @@
 <?php
-require 'banco/ProcessoTrait.php';
+
+namespace SON\Conta\Util;
 
   class Produto
   {
