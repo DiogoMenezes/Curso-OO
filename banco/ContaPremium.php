@@ -1,15 +1,15 @@
 <?php
+require 'ContaAbstract.php';
 
-class ContaPremium extends Conta
+class ContaPremium extends ContaAbstract
 {
   public function __construct()
   {
     $this->saldo += 10;
   }
 
-  protected function calculoDeposito($valor)
+  public function calculoDeposito($valor)
   {
-    $valorNormal = parent::calculoDeposito($valor);
-    return $valorNormal += 20;
+    return $valor += 20;
   }
 }

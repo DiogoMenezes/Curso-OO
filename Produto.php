@@ -1,6 +1,9 @@
 <?php
+require 'banco/ProcessoTrait.php';
+
   class Produto
   {
+      use ProcessoTrait;
     private $nome;
     private $descricao;
     private $valor;
@@ -20,6 +23,7 @@
 
     public function getNome()
     {
+        $this->iniciaProcesso();
       return $this->nome;
     }
 
@@ -62,7 +66,7 @@
       return $this;
     }
 
-    private function baixaEstoque()
+    protected function baixaEstoque()
     {
       $this->estoque = $this->estoque - 1;
     }

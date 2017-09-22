@@ -1,30 +1,9 @@
 <?php
+require 'ContaAbstract.php';
 
-class Conta
+class Conta extends ContaAbstract
 {
-    protected $saldo;
-
-    public function depositar($valor)
-    {
-      $this->saldo += $this->calculoDeposito($valor);
-      return true;
-    }
-
-    public function sacar($valor)
-    {
-      if($this->saldo >= $valor){
-        $this->saldo -= $valor;
-        return true;
-      }
-      return false;
-    }
-
-    public function getSaldo()
-    {
-        return $this->saldo;
-    }
-
-    protected function calculoDeposito($valor)
+    public function calculoDeposito($valor)
     {
       return $valor +=10;
     }

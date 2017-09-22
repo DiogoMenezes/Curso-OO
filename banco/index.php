@@ -1,6 +1,5 @@
 <?php
 
-require_once 'Conta.php';
 require_once 'ContaPremium.php';
 
  $conta = new ContaPremium();
