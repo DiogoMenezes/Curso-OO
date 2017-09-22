@@ -10,14 +10,9 @@ require_once('ClienteInterface.php');
     protected  $enderecoCobranca;
     protected  $tipo;
     protected  $grau;
-    public function __construct($id, $nome, $cpf, $endereco, $grau = null)
-    {
-        $this->nome = $nome;
-        $this->cpf = $cpf;
-        $this->endereco = $endereco;
-        $this->id = $id;
-        $this->grau = $grau;
-    }
+
+    public abstract function __construct($id, $nome, $cpf, $endereco, $grau = null);
+
     public function getNome()
     {
         return $this->nome;

@@ -3,9 +3,13 @@ require_once("Cliente.php");
 
 class ClientePF extends Cliente
 {
-    public function __construct($id, $nome, $cpf, $endereco)
+    public function __construct($id, $nome, $cpf, $endereco, $grau = null)
     {
-        parent::__construct($id, $nome, $cpf, $endereco);
-        $this->tipo = 1;
+            $this->nome = $nome;
+            $this->cpf = $cpf;
+            $this->endereco = $endereco;
+            $this->id = $id;
+            $this->grau = $grau;
+            $this->tipo = 1;
     }
 }
