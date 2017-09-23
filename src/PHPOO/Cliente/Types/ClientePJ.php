@@ -1,7 +1,9 @@
 <?php
-require_once("Cliente.php");
+namespace PHPOO\Cliente\Types;
 
-class ClientePJ extends Cliente
+use PHPOO\Cliente\ClienteAbstract;
+
+class ClientePJ extends ClienteAbstract
 {
     public function __construct($id, $nome, $cpf, $endereco, $grau = null)
     {
