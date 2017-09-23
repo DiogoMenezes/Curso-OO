@@ -1,6 +1,7 @@
 <?php
-require_once('BancoClientes.php');
-$banco = new BancoClientes();
+require_once('autoload.php');
+
+$banco = new PHPOO\Cliente\Banco\BancoClientes();
 $cliente = $banco->getCliente($_GET['id']);
 ?>
 <!DOCTYPE html>

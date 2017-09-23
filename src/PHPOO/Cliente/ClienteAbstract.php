@@ -1,7 +1,7 @@
 <?
-require_once('ClienteInterface.php');
+namespace PHPOO\Cliente;
 
- abstract class Cliente implements ClienteInterface
+ abstract class ClienteAbstract implements ClienteInterface
 {
     protected  $id;
     protected  $nome;

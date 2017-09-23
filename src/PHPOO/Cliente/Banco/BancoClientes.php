@@ -1,7 +1,9 @@
 <?php
-require 'Cliente.php';
-require 'ClientePF.php';
-require 'ClientePJ.php';
+namespace PHPOO\Cliente\Banco;
+
+use PHPOO\Cliente\Types\ClientePF,
+    PHPOO\Cliente\Types\ClientePJ;
+
 class BancoClientes
  {
         public static $clientes = array();
